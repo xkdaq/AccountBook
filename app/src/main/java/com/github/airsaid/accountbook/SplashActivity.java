@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.animation.AlphaAnimation;
 import android.widget.TextView;
 
@@ -52,17 +53,21 @@ public class SplashActivity extends BaseActivity {
             public void run() {
                 Intent intent = new Intent();
                 // 判断用户是否更新了应用和登录
-                if (!isUpdateApp() && UserUtils.checkLogin()) {
+                //!isUpdateApp() &&
+                if (UserUtils.checkLogin()) {
                     User user = UserUtils.getUser();
                     boolean phoneVerified = user.isMobilePhoneVerified();
                     // 进入首页
-                    if(phoneVerified){
-                        // 进入首页
-                        intent.setClass(mContext, MainActivity.class);
-                    }else{
-                        // 进入登录页
-                        intent.setClass(mContext, LoginActivity.class);
-                    }
+//                    if (phoneVerified) {
+//                        // 进入首页
+//                        intent.setClass(mContext, MainActivity.class);
+//                    } else {
+//                        // 进入登录页
+//                        intent.setClass(mContext, LoginActivity.class);
+//                    }
+
+                    // 进入首页
+                    intent.setClass(mContext, MainActivity.class);
                 } else {
                     // 进入登录页
                     intent.setClass(mContext, LoginActivity.class);
@@ -88,14 +93,14 @@ public class SplashActivity extends BaseActivity {
      * 判断 App 是否更新过。
      * 主要是决解用户登录后重新覆盖安装 App，不会重新走登录问题。
      */
-    private boolean isUpdateApp(){
-        if(BuildConfig.DEBUG){
+    private boolean isUpdateApp() {
+        if (BuildConfig.DEBUG) {
             return false;
         }
 
         long oldLastUpdateTime = (long) SPUtils.getSP(mContext, AppConstants.KEY_LAST_UPDATE_TIME, 0l);
         long lastUpdateTime = AppUtils.getLastUpdateTime();
-        if(lastUpdateTime != oldLastUpdateTime){ // 更新过
+        if (lastUpdateTime != oldLastUpdateTime) { // 更新过
             return true;
         }
         return false;

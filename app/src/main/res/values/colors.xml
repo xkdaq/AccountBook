@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--默认(少女粉)-->
-    <color name="colorPrimaryDark">#FF82A8</color>
+    <color name="colorPrimaryDark">#FEACC3</color>
     <color name="colorPrimary">#FEACC3</color>
     <color name="colorAccent">#FFBACD</color>
 

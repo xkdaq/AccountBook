@@ -9,6 +9,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -136,7 +137,7 @@ public class MainFragment extends BaseFragment implements MainContract.View, Swi
                 mRefreshLayout.setRefreshing(true);
                 mPage = 1;
                 requestData();
-//                mPresenter.queryAccountTotalMoney(UserUtils.getUser(), mStartDate, mEndDate);
+                mPresenter.queryAccountTotalMoney(UserUtils.getUser(), mStartDate, mEndDate);
             }
         });
     }
@@ -183,6 +184,8 @@ public class MainFragment extends BaseFragment implements MainContract.View, Swi
 
     @Override
     public void queryTotalMoneySuccess(double totalCost, double totalIncome) {
+        Log.e("xuke","--->"+totalCost);
+        Log.e("xuke","--->"+totalIncome);
         mTxtTotalCost.setText(String.valueOf(totalCost));
         mTxtTotalIncome.setText(String.valueOf(totalIncome));
     }
